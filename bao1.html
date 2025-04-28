@@ -6,22 +6,21 @@
   <title>30/4/1075</title>
   <style>
     body {
-    margin: 0;
-    background: black; /* Thay đổi background thành màu đen */
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    position: relative;
-}
-
+      margin: 0;
+      background-color: black;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
     }
 
     .container {
       position: relative;
-      width: 320px;
-      height: 220px;
+      width: 80%;
+      max-width: 320px;
+      height: auto;
       background: linear-gradient(to bottom, #FF0000 50%, #0066CC 50%);
       border-radius: 10px;
       overflow: hidden;
@@ -38,8 +37,8 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 120px;
-      height: 120px;
+      width: 60px;
+      height: 60px;
       background: linear-gradient(145deg, #FFD700, #FFC300);
       clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
       transform: translate(-50%, -50%);
@@ -63,7 +62,7 @@
     }
 
     .tank {
-      width: 120px;
+      width: 100px;
       position: absolute;
       left: -150px;
       animation: moveTank 10s linear forwards;
@@ -79,8 +78,8 @@
       bottom: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 160px;
-      height: 180px;
+      width: 120px;
+      height: 140px;
       background: url('cong.png') no-repeat center/contain;
       transition: all 0.5s;
     }
@@ -131,31 +130,71 @@
       top: 20px;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 2rem;
+      font-size: 1.5rem;
       color: #FF0000;
       font-weight: bold;
       display: none;
     }
 
-    /* Chữ nhấp nháy theo hàng ngang */
     .blink-text {
       position: absolute;
-      top: 15%; /* Di chuyển lên cao hơn */
+      top: 15%;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 2.5rem;
+      font-size: 2rem;
       color: #FFD700;
       font-weight: bold;
       text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
-      white-space: nowrap; /* Đảm bảo chữ không bị ngắt dòng */
+      white-space: nowrap;
       animation: blinkEffect 1s infinite alternate;
-      display: none; /* Ẩn chữ khi chưa đâm cổng */
+      display: none;
     }
 
     @keyframes blinkEffect {
       0% { opacity: 1; }
       50% { opacity: 0; }
       100% { opacity: 1; }
+    }
+
+    /* Media Query cho thiết bị di động */
+    @media (max-width: 768px) {
+      .container {
+        width: 90%;
+        max-width: 280px;
+      }
+      .tank {
+        width: 80px;
+      }
+      .gate {
+        width: 100px;
+        height: 120px;
+      }
+      .clock {
+        font-size: 1.2rem;
+      }
+      .blink-text {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        width: 95%;
+        max-width: 240px;
+      }
+      .tank {
+        width: 60px;
+      }
+      .gate {
+        width: 80px;
+        height: 100px;
+      }
+      .clock {
+        font-size: 1rem;
+      }
+      .blink-text {
+        font-size: 1.2rem;
+      }
     }
   </style>
 </head>
@@ -207,14 +246,14 @@ function createFlash() {
 
 function createFirework(x, y) {
   const particles = [];
-  for (let i = 0; i < 100; i++) {  // Tăng số lượng hạt pháo hoa
+  for (let i = 0; i < 100; i++) {
     particles.push({
       x, y,
-      angle: Math.random() * Math.PI * 2,  // Phát ra các góc ngẫu nhiên
-      speed: Math.random() * 6 + 3,  // Tốc độ lớn hơn để bay xa hơn
+      angle: Math.random() * Math.PI * 2,
+      speed: Math.random() * 6 + 3,
       radius: 2 + Math.random() * 2,
       color: `hsl(${Math.random() * 360}, 100%, 60%)`,
-      alpha: 1  // Độ mờ của hạt pháo
+      alpha: 1
     });
   }
   fireworks.push(particles);
@@ -227,14 +266,13 @@ function animateFireworks() {
       p.x += Math.cos(p.angle) * p.speed;
       p.y += Math.sin(p.angle) * p.speed;
       p.radius *= 0.98;
-      p.alpha -= 0.02;  // Làm cho các hạt pháo hoa mờ dần đi
+      p.alpha -= 0.02;
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI);
       ctx.fillStyle = `rgba(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255}, ${p.alpha})`;
       ctx.fill();
     });
 
-    // Loại bỏ các particles đã biến mất
     if (particles[0].alpha <= 0) fireworks.splice(idx, 1);
   });
   requestAnimationFrame(animateFireworks);
@@ -253,22 +291,19 @@ function checkCollision() {
     setTimeout(() => tank.style.display = 'none', 600);
     clock.style.display = 'block';
 
-    // Phát nhạc khi đâm cổng
     tankCrashSound.play();
     bgMusic.pause();
     afterCrashMusic.play();
 
     createFlash();
 
-    // Tạo pháo hoa bay lên rồi nổ ra
     setInterval(() => {
-      const fireworkX = Math.random() * window.innerWidth;  // Bắn từ ngẫu nhiên các điểm trên màn hình
-      const fireworkY = window.innerHeight - 20;  // Xuất phát từ dưới cùng
+      const fireworkX = Math.random() * window.innerWidth;
+      const fireworkY = window.innerHeight - 20;
       createFirework(fireworkX, fireworkY);
-    }, 300);  // Tạo pháo hoa mỗi 300ms
+    }, 300);
 
-    // Hiển thị chữ nhấp nháy
-    blinkText.style.display = 'block'; 
+    blinkText.style.display = 'block';
 
     clearInterval(collisionCheck);
   }
