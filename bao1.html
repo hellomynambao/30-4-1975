@@ -159,6 +159,70 @@
       50% { opacity: 0; }
       100% { opacity: 1; }
     }
+
+    /* Responsive cho điện thoại và màn hình nhỏ */
+    @media (max-width: 768px) {
+      .container {
+        width: 250px;
+        height: 180px;
+      }
+
+      .star {
+        width: 80px;
+        height: 80px;
+      }
+
+      .tank {
+        width: 80px;
+      }
+
+      .gate {
+        width: 120px;
+        height: 140px;
+      }
+
+      .clock {
+        font-size: 1.5rem;
+        top: 10px;
+      }
+
+      .blink-text {
+        font-size: 1.2rem;
+        top: 8%;
+        line-height: 1.2;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        width: 200px;
+        height: 150px;
+      }
+
+      .star {
+        width: 60px;
+        height: 60px;
+      }
+
+      .tank {
+        width: 70px;
+      }
+
+      .gate {
+        width: 100px;
+        height: 120px;
+      }
+
+      .clock {
+        font-size: 1.2rem;
+      }
+
+      .blink-text {
+        font-size: 1rem;
+        top: 6%;
+        line-height: 1.1;
+      }
+    }
   </style>
 </head>
 <body>
