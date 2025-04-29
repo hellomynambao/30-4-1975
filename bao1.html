@@ -14,12 +14,14 @@
       align-items: center;
       height: 100vh;
       position: relative;
+      flex-direction: column;
     }
 
     .container {
       position: relative;
-      width: 320px;
-      height: 220px;
+      width: 100%;
+      height: auto;
+      max-width: 320px;
       background: linear-gradient(to bottom, #FF0000 50%, #0066CC 50%);
       border-radius: 10px;
       overflow: hidden;
@@ -134,7 +136,6 @@
       color: #FF0000;
       font-weight: bold;
       display: none;
-      z-index: 7;
     }
 
     .blink-text {
@@ -142,16 +143,16 @@
       top: 10%;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 1.8rem;
+      font-size: 2.5rem;
       color: #FFD700;
       font-weight: bold;
       text-align: center;
       text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
-      white-space: pre-line;
+      white-space: nowrap;
       animation: blinkEffect 1s infinite alternate;
       display: none;
       z-index: 6;
-      line-height: 1.4;
+      width: 100%;
     }
 
     @keyframes blinkEffect {
@@ -160,67 +161,42 @@
       100% { opacity: 1; }
     }
 
-    /* Responsive cho điện thoại và màn hình nhỏ */
+    /* Chỉnh lại cho giao diện di động */
     @media (max-width: 768px) {
       .container {
-        width: 250px;
-        height: 180px;
+        width: 90%;  /* Giảm kích thước cờ */
+        height: 180px;  /* Giảm chiều cao */
+      }
+
+      .blink-text {
+        font-size: 1.5rem;  /* Giảm kích thước chữ trên di động */
+        top: 10%;  /* Đẩy lên cao hơn */
       }
 
       .star {
-        width: 80px;
+        width: 80px;  /* Giảm kích thước ngôi sao */
         height: 80px;
       }
 
+      .clock {
+        font-size: 1.5rem;  /* Giảm kích thước đồng hồ */
+        top: 10px;  /* Đưa lên gần đầu màn hình */
+      }
+
+      /* Điều chỉnh lại xe tăng */
       .tank {
-        width: 80px;
+        width: 90px;  /* Giảm kích thước xe tăng */
+        animation: moveTank 10s linear forwards;  /* Chạy xe tăng như cũ */
       }
 
       .gate {
-        width: 120px;
-        height: 140px;
+        width: 120px;  /* Giảm kích thước cổng */
+        height: 150px;  /* Giảm chiều cao */
       }
 
-      .clock {
-        font-size: 1.5rem;
-        top: 10px;
-      }
-
-      .blink-text {
-        font-size: 1.2rem;
-        top: 8%;
-        line-height: 1.2;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .container {
-        width: 200px;
-        height: 150px;
-      }
-
-      .star {
-        width: 60px;
-        height: 60px;
-      }
-
-      .tank {
-        width: 70px;
-      }
-
-      .gate {
-        width: 100px;
-        height: 120px;
-      }
-
-      .clock {
-        font-size: 1.2rem;
-      }
-
-      .blink-text {
-        font-size: 1rem;
-        top: 6%;
-        line-height: 1.1;
+      /* Tăng khả năng hiển thị của pháo hoa */
+      #fireworks {
+        z-index: 10;
       }
     }
   </style>
@@ -240,10 +216,8 @@
 
 <canvas id="fireworks"></canvas>
 
-<div class="blink-text" id="blinkText">
-  CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM <br>
-  ĐỘC LẬP - TỰ DO - HẠNH PHÚC
-</div>
+<div class="blink-text" id="blinkText">ĐẢNG CỘNG SẢN VIỆT NAM MUÔN NĂM <br>
+                                         ĐỘC LẬP-TỰ DO-HẠNH PHÚC   </div>
 
 <audio id="tankCrash" src="đâm.mp3" preload="auto"></audio>
 <audio id="bgMusic" src="nhạc.mp3" preload="auto" loop></audio>
