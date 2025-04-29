@@ -3,89 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>30/4/1075</title>
-  <style>
-    body {
-      margin: 0;
-      background-color: black;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      position: relative;
-    }
-
-    .container {
-      position: relative;
-      width: 320px;
-      height: 220px;
-      background: linear-gradient(to bottom, #FF0000 50%, #0066CC 50%);
-      border-radius: 10px;
-      overflow: hidden;
-      animation: wave 5s ease-in-out infinite;
-    }
-
-    @keyframes wave {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      25% { transform: translateY(-5px) rotate(-2deg); }
-      75% { transform: translateY(5px) rotate(2deg); }
-    }
-
-    .star {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 120px;
-      height: 120px;
-      background: linear-gradient(145deg, #FFD700, #FFC300);
-      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
-      animation: starAnimation 3s ease-in-out infinite;
-    }
-
-    @keyframes starAnimation {
-      0%, 100% { transform: translate(-50%, -50%) rotate(0deg) scale(1); opacity: 1; }
-      50% { transform: translate(-50%, -50%) rotate(45deg) scale(1.2); opacity: 0.9; }
-    }
-
-    .tank-gate-container {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      z-index: 3;
-    }
-
-    .tank {
-      width: 120px;
-      position: absolute;
-      left: -150px;
-      animation: moveTank 10s linear forwards;
-    }
-
-    @keyframes moveTank {
-      0% { left: -150px; }
-      100% { left: 60%; }
-    }
-
-    .gate {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 160px;
-      height: 180px;
-      background: url('cong.png') no-repeat center/contain;
-      transition: all 0.5s;
-    }<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>30/4/1975</title>
   <style>
     body {
@@ -217,21 +134,24 @@
       color: #FF0000;
       font-weight: bold;
       display: none;
+      z-index: 7;
     }
 
     .blink-text {
       position: absolute;
-      top: 15%;
+      top: 10%;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 2.5rem;
+      font-size: 1.8rem;
       color: #FFD700;
       font-weight: bold;
+      text-align: center;
       text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
-      white-space: nowrap;
+      white-space: pre-line;
       animation: blinkEffect 1s infinite alternate;
       display: none;
       z-index: 6;
+      line-height: 1.4;
     }
 
     @keyframes blinkEffect {
@@ -256,7 +176,10 @@
 
 <canvas id="fireworks"></canvas>
 
-<div class="blink-text" id="blinkText">ĐẢNG CỘNG SẢN VIỆT NAM MUÔN NĂM</div>
+<div class="blink-text" id="blinkText">
+  CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM <br>
+  ĐỘC LẬP - TỰ DO - HẠNH PHÚC
+</div>
 
 <audio id="tankCrash" src="đâm.mp3" preload="auto"></audio>
 <audio id="bgMusic" src="nhạc.mp3" preload="auto" loop></audio>
@@ -355,206 +278,6 @@ const collisionCheck = setInterval(checkCollision, 50);
 
 window.addEventListener('click', () => {
   bgMusic.play();
-});
-</script>
-
-</body>
-</html>
-
-
-    .gate.broken {
-      animation: breakGate 0.6s forwards;
-    }
-
-    @keyframes breakGate {
-      0% { transform: rotate(0) scale(1); opacity: 1; }
-      50% { transform: rotate(20deg) scale(1.2); opacity: 0.7; }
-      100% { transform: rotate(45deg) scale(0); opacity: 0; }
-    }
-
-    .flash {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: white;
-      opacity: 0;
-      pointer-events: none;
-      animation: flashEffect 0.4s ease forwards;
-    }
-
-    @keyframes flashEffect {
-      0% { opacity: 0.8; }
-      100% { opacity: 0; }
-    }
-
-    #fireworks {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-    }
-
-    .container.red {
-      background: url('Flag_of_Vietnam.svg.webp') no-repeat center/cover;
-      background-size: 100% 100%;
-    }
-
-    .container.red .star {
-      display: none;
-    }
-
-    .clock {
-      position: absolute;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 2rem;
-      color: #FF0000;
-      font-weight: bold;
-      display: none;
-    }
-
-    /* Chữ nhấp nháy theo hàng ngang */
-    .blink-text {
-      position: absolute;
-      top: 15%; /* Di chuyển lên cao hơn */
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 2.5rem;
-      color: #FFD700;
-      font-weight: bold;
-      text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
-      white-space: nowrap; /* Đảm bảo chữ không bị ngắt dòng */
-      animation: blinkEffect 1s infinite alternate;
-      display: none; /* Ẩn chữ khi chưa đâm cổng */
-    }
-
-    @keyframes blinkEffect {
-      0% { opacity: 1; }
-      50% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-  </style>
-</head>
-<body>
-
-<div class="container" id="flag">
-  <div class="star"></div>
-</div>
-
-<div class="clock" id="clock">11:30</div>
-
-<div class="tank-gate-container">
-  <img class="tank" id="tank" src="xe.png" alt="Xe Tăng">
-  <div class="gate" id="gate"></div>
-</div>
-
-<canvas id="fireworks"></canvas>
-
-<!-- Thêm phần chữ nhấp nháy -->
-<div class="blink-text" id="blinkText">ĐẢNG CỘNG SẢN VIỆT NAM MUÔN NĂM</div>
-
-<audio id="tankCrash" src="đân.mp3" preload="auto"></audio>
-<audio id="bgMusic" src="nhạc.mp3" preload="auto" loop></audio>
-<audio id="afterCrashMusic" src="nhạc.mp3" preload="auto" loop></audio>
-
-<script>
-const tank = document.getElementById('tank');
-const gate = document.getElementById('gate');
-const clock = document.getElementById('clock');
-const flagContainer = document.getElementById('flag');
-const tankCrashSound = document.getElementById('tankCrash');
-const bgMusic = document.getElementById('bgMusic');
-const afterCrashMusic = document.getElementById('afterCrashMusic');
-const fireworksCanvas = document.getElementById('fireworks');
-const ctx = fireworksCanvas.getContext('2d');
-const blinkText = document.getElementById('blinkText');
-
-fireworksCanvas.width = window.innerWidth;
-fireworksCanvas.height = window.innerHeight;
-
-let fireworks = [];
-
-function createFlash() {
-  const flash = document.createElement('div');
-  flash.className = 'flash';
-  document.body.appendChild(flash);
-  setTimeout(() => flash.remove(), 400);
-}
-
-function createFirework(x, y) {
-  const particles = [];
-  for (let i = 0; i < 100; i++) {  // Tăng số lượng hạt pháo hoa
-    particles.push({
-      x, y,
-      angle: Math.random() * Math.PI * 2,  // Phát ra các góc ngẫu nhiên
-      speed: Math.random() * 6 + 3,  // Tốc độ lớn hơn để bay xa hơn
-      radius: 2 + Math.random() * 2,
-      color: hsl(${Math.random() * 360}, 100%, 60%),
-      alpha: 1  // Độ mờ của hạt pháo
-    });
-  }
-  fireworks.push(particles);
-}
-
-function animateFireworks() {
-  ctx.clearRect(0, 0, fireworksCanvas.width, fireworksCanvas.height);
-  fireworks.forEach((particles, idx) => {
-    particles.forEach(p => {
-      p.x += Math.cos(p.angle) * p.speed;
-      p.y += Math.sin(p.angle) * p.speed;
-      p.radius *= 0.98;
-      p.alpha -= 0.02;  // Làm cho các hạt pháo hoa mờ dần đi
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI);
-      ctx.fillStyle = rgba(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255}, ${p.alpha});
-      ctx.fill();
-    });
-
-    // Loại bỏ các particles đã biến mất
-    if (particles[0].alpha <= 0) fireworks.splice(idx, 1);
-  });
-  requestAnimationFrame(animateFireworks);
-}
-
-animateFireworks();
-
-function checkCollision() {
-  const tankRect = tank.getBoundingClientRect();
-  const gateRect = gate.getBoundingClientRect();
-
-  if (tankRect.right >= gateRect.left && tankRect.left <= gateRect.right && tankRect.bottom >= gateRect.top) {
-    gate.classList.add('broken');
-    flagContainer.classList.add('red');
-    tank.style.opacity = 0;
-    setTimeout(() => tank.style.display = 'none', 600);
-    clock.style.display = 'block';
-
-    // Phát nhạc khi đâm cổng
-    tankCrashSound.play();
-    bgMusic.pause();
-    afterCrashMusic.play();
-
-    createFlash();
-
-    // Tạo pháo hoa bay lên rồi nổ ra
-    setInterval(() => {
-      const fireworkX = Math.random() * window.innerWidth;  // Bắn từ ngẫu nhiên các điểm trên màn hình
-      const fireworkY = window.innerHeight - 20;  // Xuất phát từ dưới cùng
-      createFirework(fireworkX, fireworkY);
-    }, 300);  // Tạo pháo hoa mỗi 300ms
-
-    // Hiển thị chữ nhấp nháy
-    blinkText.style.display = 'block'; 
-
-    clearInterval(collisionCheck);
-  }
-}
-
-const collisionCheck = setInterval(checkCollision, 50);
-
-window.addEventListener('click', () => {
-  document.getElementById('bgMusic').play();
 });
 </script>
 
