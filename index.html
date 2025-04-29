@@ -15,20 +15,23 @@
       height: 100vh;
       margin: 0;
     }
+
     .container {
       background: rgba(255, 255, 255, 0.85);
       padding: 30px 40px;
       border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
       text-align: center;
-      width: 90%; /* Điều chỉnh độ rộng cho di động */
-      max-width: 500px; /* Giới hạn độ rộng cho desktop */
+      max-width: 400px;
+      width: 90%;
     }
+
     h2 {
       color: #cc0000;
       margin-bottom: 20px;
       font-size: 24px;
     }
+
     .btn {
       background-color: #d40000;
       color: white;
@@ -39,30 +42,37 @@
       font-size: 18px;
       transition: background 0.3s, transform 0.2s;
     }
+
     .btn:hover {
       background-color: #a80000;
       transform: scale(1.05);
     }
 
-    /* Media Query cho các thiết bị di động */
+    /* Responsive Styles */
     @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+
       h2 {
         font-size: 20px;
       }
+
       .btn {
         padding: 10px 20px;
         font-size: 16px;
       }
-      .container {
-        padding: 20px;
-      }
     }
 
-    /* Media Query cho các điện thoại nhỏ */
     @media (max-width: 480px) {
+      .container {
+        padding: 15px;
+      }
+
       h2 {
         font-size: 18px;
       }
+
       .btn {
         padding: 8px 16px;
         font-size: 14px;
